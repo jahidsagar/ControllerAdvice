@@ -53,7 +53,7 @@ public class UserService implements UserInterface {
                 .stream()
                 .filter(userModel -> userModel.getId().equalsIgnoreCase(id))
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new NoUserFoundException("No user found"));
         userModels.remove(user);
         return user;
     }
